@@ -25,15 +25,11 @@ Q.idea/sonarlint/securityhotspotstore/c/f/cf5ccf84bd55bfa3dd4ba69ec25d3b322e5987
 Å
 Q.idea/sonarlint/securityhotspotstore/9/2/924f089edb4af5ee45c8a9d1129cd28e2b368138,b/0/b08f1ab659fbdd998f45c0def99188f980cc899b
 Å
-Q.idea/sonarlint/securityhotspotstore/4/9/49459d5be846d233d0e44a677e77b8ca5d2063c6,1/5/155f79df321563bcc520be091998ac7ddef9a5c5
-Å
 Q.idea/sonarlint/securityhotspotstore/b/5/b50ed0a9388bbee9be3c5dcbbc0a291e0150472d,f/4/f4ab84e5a400b121e784d0dac30ea313659311b6
 Å
 Q.idea/sonarlint/securityhotspotstore/e/6/e62fa88e457690a771fdc1645d2ee233732e00d2,1/5/157d0151b340fa050191a7cf2689fb6a2fdc693a
 S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
-w
-G.idea/sonarlint/issuestore/4/9/49459d5be846d233d0e44a677e77b8ca5d2063c6,e/1/e1e57a85e4db7ac8e07b793314f45f576dba6384
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
 w
@@ -46,3 +42,13 @@ N
 src/config/DatabaseConfig.java,e/e/eeab227e56c034652602c34f6ccb0df3f99a42aa
 R
 "src/repository/UserRepository.java,9/2/92809f7de735dfb6d3d65f67545339fcee0b4294
+D
+src/dto/UserDTO.java,3/7/37deb626d2e937f1c523eb934269d7c573a3349c
+S
+#src/config/DatabaseInitializer.java,6/0/60cc49effb9c5a2dcc1c0670808e004247da61be
+Z
+*src/repository/WeightRecordRepositiry.java,8/7/87b245da7a18ba5e52e6023b10602f585ffe7faf
+L
+src/entity/WeightRecord.java,f/c/fcc880f4e4a63d6018cebe3a232b205d3b33ed72
+L
+src/service/UserService.java,2/6/269a5caee93e93cbb6140dfdc01b7b5a858c3de2

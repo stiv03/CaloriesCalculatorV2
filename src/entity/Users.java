@@ -2,6 +2,9 @@ package entity;
 
 import entity.enums.UserType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Users {
 
     private Long id;
@@ -12,6 +15,8 @@ public class Users {
     private String username;
     private String password;
     private UserType userType;
+
+    private List<WeightRecord> weightRecords = new ArrayList<>();
 
 
     public Users(Long id, String name, int age, double weight, int height, String username, String password, UserType userType) {
@@ -106,6 +111,14 @@ public class Users {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public List<WeightRecord> getWeightRecords() {
+        return weightRecords;
+    }
+
+    public void setWeightRecords(List<WeightRecord> weightRecords) {
+        this.weightRecords = weightRecords;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class UserRepository {
                             resultSet.getInt("age"),
                             resultSet.getDouble("weight"),
                             resultSet.getInt("height"),
-                            (UserType) resultSet.getObject("userType")
+                            (UserType)resultSet.getObject("userType")
                     );
                 }
             }
@@ -107,4 +107,56 @@ public class UserRepository {
             System.out.println("Error updating weight ");
         }
     }
+
+    public void updateUserHeight(Long userId, int newHeight) {
+        String query = "UPDATE users SET height = ? WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, newHeight);
+            statement.setLong(2, userId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating height ");
+        }
+    }
+
+    public void updateUserAge(Long userId, int newAge) {
+        String query = "UPDATE users SET age = ? WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, newAge);
+            statement.setLong(2, userId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating age");
+        }
+    }
+
+    public void deleteByUserID(long userId) {
+        String query = "DELETE FROM users WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setLong(1, userId);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("User with ID " + userId + " deleted successfully.");
+            } else {
+                System.out.println("No user found with ID " + userId);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error deleting user: " + e.getMessage());
+        }
+    }
+
+
+
 }
