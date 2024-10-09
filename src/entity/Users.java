@@ -25,6 +25,25 @@ public class Users {
         this.userType = userType;
     }
 
+    //getUserById
+    public Users(String name, int age, double weight, int height, UserType userType) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.userType = userType;
+    }
+
+    //login
+    public Users(Long id, String name, int age, double weight, int height, UserType userType) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.userType = userType;
+    }
+
     public Long getId() {
         return id;
     }
