@@ -11,8 +11,17 @@ public class Product {
     private double fatPer100Grams;
     private double carbsPer100Grams;
 
-    public Product(Long id, String name, ProductType productType, double caloriesPer100Grams,
+    public Product( String name, ProductType productType, double caloriesPer100Grams,
                    double proteinPer100Grams, double fatPer100Grams, double carbsPer100Grams) {
+        this.name = name;
+        this.productType = productType;
+        this.caloriesPer100Grams = caloriesPer100Grams;
+        this.proteinPer100Grams = proteinPer100Grams;
+        this.fatPer100Grams = fatPer100Grams;
+        this.carbsPer100Grams = carbsPer100Grams;
+    }
+
+    public Product(Long id, String name, ProductType productType, double caloriesPer100Grams, double proteinPer100Grams, double fatPer100Grams, double carbsPer100Grams) {
         this.id = id;
         this.name = name;
         this.productType = productType;
@@ -20,6 +29,10 @@ public class Product {
         this.proteinPer100Grams = proteinPer100Grams;
         this.fatPer100Grams = fatPer100Grams;
         this.carbsPer100Grams = carbsPer100Grams;
+    }
+
+    public Product() {
+
     }
 
     public Long getId() {
