@@ -59,8 +59,8 @@ public class UserService {
         user.getWeightRecords().add(weightRecord);
     }
 
-    public List<WeightRecordDTO> getWeightRecords(final Long id) {
-        final var user = usersRepository.getUserById(id);
+    public List<WeightRecordDTO> getWeightRecords(final Long userId) {
+        final var user = usersRepository.getUserById(userId);
         return user.getWeightRecords().stream().map(WeightRecordMapper::toDTO).toList();
     }
 
