@@ -18,6 +18,9 @@ public class Meal {
         this.consumedAt = consumedAt;
     }
 
+    public Meal() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -4,6 +4,7 @@ import config.DatabaseConfig;
 import entity.Product;
 import entity.Users;
 import entity.enums.ProductType;
+import entity.enums.UserType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,8 @@ public class ProductRepository {
     private Connection getConnection() throws SQLException {
         return DatabaseConfig.getConnection();
     }
+
+
 
     public void addNewProduct(Product product) {
         String query = "INSERT INTO products (name, product_type, calories_per_100_grams, protein_per_100_grams," +
@@ -37,6 +40,36 @@ public class ProductRepository {
             System.out.println("Error creating new product");
         }
     }
+
+    public Product getProductById(Long id) {
+        String query = "SELECT name, product_type, calories_per_100_grams, protein_per_100_grams, " +
+                "fat_per_100_grams, carbs_per_100_grams FROM products WHERE id = ?";
+        Product product = null;
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setLong(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    product = new Product(
+                    resultSet.getString("name"),
+                    ProductType.valueOf(resultSet.getString("product_type")),
+                    resultSet.getDouble("calories_per_100_grams"),
+                    resultSet.getDouble("protein_per_100_grams"),
+                    resultSet.getDouble("fat_per_100_grams"),
+                    resultSet.getDouble("carbs_per_100_grams"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving product: " + e.getMessage());
+
+        }
+
+        return product;
+    }
+
 
     public List<Product> findByNameContainingIgnoreCase(String name) {
         String query = "SELECT id, name, product_type, calories_per_100_grams, protein_per_100_grams, " +

@@ -52,3 +52,35 @@ L
 src/entity/WeightRecord.java,f/c/fcc880f4e4a63d6018cebe3a232b205d3b33ed72
 L
 src/service/UserService.java,2/6/269a5caee93e93cbb6140dfdc01b7b5a858c3de2
+]
+-src/dto/UpdateUserMeasurementsRequestDTO.java,b/a/ba64030be27fea58619f2707777ed003c6b89a56
+R
+"src/entity/MeasurementsRecord.java,a/f/af042eec6810298569641c955b9b3b4b42964307
+X
+(src/mapper/MeasurementsRecordMapper.java,9/9/99355e3426eb4e0fe6cfef484b177299299e8445
+L
+src/dto/WeightRecordDTO.java,7/8/78269f49a168f66702e8fec7fdd422ddaccc4661
+R
+"src/dto/MeasurementsRecordDTO.java,c/4/c4a4500f086fe5a22238a3c8c76babc055781c05
+R
+"src/mapper/WeightRecordMapper.java,3/f/3fabec578587becf7f306e9d93dcc2572494d219
+`
+0src/repository/MeasurementsRecordRepository.java,d/d/dd4cec657235d6f1670f763f9045a1ab5f931929
+G
+src/dto/ProductDTO.java,e/d/ed9ac746250d202f946b88b3837d772d9632f1e6
+M
+src/mapper/ProductMapper.java,7/2/72aee84b9a22476f84b3c82605d296ba579a67a4
+O
+src/mapper/UserMealsMapper.java,2/3/2391018635c434896cadbf0ed017c9ab3ff5ebd1
+K
+src/dto/DailyMacrosDTO.java,2/6/2624969d7c2f3d2fd7d04efcc15ec20a58f8080e
+L
+src/service/MealService.java,2/e/2e279b8f89eb923e5da3ab27f267c9420b2a534c
+L
+src/dto/MealResponseDTO.java,4/6/464ee4f6de73ebc8f4894b2f6f999574efb5d0e9
+U
+%src/repository/ProductRepository.java,f/4/f492e6e364da0d8db568f8e6a5c8a66bf94e4024
+S
+#src/repository/MealsRepository.java,5/4/54974876b60d84d0b10b0f45751118fc2a01c094
+O
+src/service/ProductService.java,3/a/3a1ebb64819c9c11d412978be58c39ce4a1126d2
