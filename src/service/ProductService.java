@@ -1,8 +1,10 @@
 package service;
 
 import dto.ProductDTO;
+import dto.ProductResponseDTO;
 import entity.Product;
 import mapper.ProductMapper;
+import mapper.ProductResponseMapper;
 import repository.ProductRepository;
 
 import java.util.List;
@@ -11,9 +13,10 @@ public class ProductService {
 
     private final ProductRepository productRepository = new ProductRepository();
 
-    public ProductDTO addNewProduct(ProductDTO productDTO){
+    public void addNewProduct(ProductDTO productDTO){
         var newProduct = new Product();
 
+        newProduct.setName(productDTO.name());
         newProduct.setProductType(productDTO.productType());
         newProduct.setCaloriesPer100Grams(productDTO.caloriesPer100Grams());
         newProduct.setProteinPer100Grams(productDTO.proteinPer100Grams());
@@ -21,13 +24,11 @@ public class ProductService {
         newProduct.setCarbsPer100Grams(productDTO.carbsPer100Grams());
 
         productRepository.addNewProduct(newProduct);
-
-        return ProductMapper.mapToProductDTO(newProduct);
     }
 
 
-    public List<ProductDTO> searchProducts(String query) {
-        return productRepository.findByNameContainingIgnoreCase(query).stream().map(ProductMapper::mapToProductDTO).toList();
+    public List<ProductResponseDTO> searchProducts(String query) {
+        return productRepository.findByNameContainingIgnoreCase(query).stream().map(ProductResponseMapper::mapToProductResponseDTO).toList();
     }
 }
 

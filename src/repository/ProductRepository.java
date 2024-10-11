@@ -2,10 +2,7 @@ package repository;
 
 import config.DatabaseConfig;
 import entity.Product;
-import entity.Users;
 import entity.enums.ProductType;
-import entity.enums.UserType;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

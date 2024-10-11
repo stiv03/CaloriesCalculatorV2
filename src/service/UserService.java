@@ -1,17 +1,18 @@
 package service;
 
-import dto.MeasurementsRecordDTO;
-import dto.UpdateUserMeasurementsRequestDTO;
-import dto.UserDTO;
-import dto.WeightRecordDTO;
+import dto.*;
 import entity.MeasurementsRecord;
 import entity.Users;
 import entity.WeightRecord;
+import entity.enums.UserType;
 import mapper.MeasurementsRecordMapper;
 import mapper.WeightRecordMapper;
 import repository.MeasurementsRecordRepository;
 import repository.UserRepository;
 import repository.WeightRecordRepositiry;
+
+import javax.xml.stream.events.DTD;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,28 @@ public class UserService {
     private final UserRepository usersRepository = new UserRepository();
     private final WeightRecordRepositiry weightRecordRepositiry = new WeightRecordRepositiry();
     private final MeasurementsRecordRepository measurementsRecordRepository = new MeasurementsRecordRepository();
+
+    public Long login(LoginDTO loginDTO) throws SQLException {
+        String username = loginDTO.username();
+        String password = loginDTO.password();
+
+        return usersRepository.login(username, password);
+    }
+
+    public void register(RegisterDTO registerDTO) throws SQLException {
+        Users user = new Users(
+                registerDTO.name(),
+                registerDTO.age(),
+                registerDTO.weight(),
+                registerDTO.height(),
+                registerDTO.username(),
+                registerDTO.password(),
+                UserType.USER
+        );
+
+        usersRepository.registerUser(user);
+    }
+
 
     public UserDTO getUserById(final long userId) {
         Users user = usersRepository.getUserById(userId);
@@ -64,7 +87,7 @@ public class UserService {
         return user.getWeightRecords().stream().map(WeightRecordMapper::toDTO).toList();
     }
 
-    public MeasurementsRecordDTO addMeasurement(final Long userId, UpdateUserMeasurementsRequestDTO requestDTO) {
+    public void addMeasurement(final Long userId, UpdateUserMeasurementsRequestDTO requestDTO) {
         final var user =  usersRepository.getUserById(userId);
         var measurementsRecord = new MeasurementsRecord();
                 measurementsRecord.setUser(user);
@@ -79,7 +102,6 @@ public class UserService {
 
                 measurementsRecordRepository.addMeasurementsRecord(measurementsRecord);
 
-        return MeasurementsRecordMapper.toDTO(measurementsRecord);
     }
 
     public List<MeasurementsRecordDTO> getMeasurementsByUser(final Long userId) {

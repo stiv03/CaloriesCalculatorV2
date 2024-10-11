@@ -2,14 +2,11 @@ package repository;
 
 import config.DatabaseConfig;
 import entity.MeasurementsRecord;
-import entity.Users;
-import entity.enums.UserType;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+
 
 public class MeasurementsRecordRepository {
 

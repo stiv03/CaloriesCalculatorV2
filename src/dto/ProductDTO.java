@@ -4,7 +4,7 @@ import entity.enums.ProductType;
 
 
 public record ProductDTO(String name,
-                         Long productId,
+
                          ProductType productType,
                          double caloriesPer100Grams,
                          double proteinPer100Grams,

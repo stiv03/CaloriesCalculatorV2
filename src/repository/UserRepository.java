@@ -62,9 +62,9 @@ public class UserRepository {
         return user;
     }
 
-    public Users login(String username, String password) {
-        String query = "SELECT id, name, age, weight, height, userType FROM users WHERE username = ? AND password = ?";
-        Users user = null;
+    public Long login(String username, String password) {
+        String query = "SELECT id FROM users WHERE username = ? AND password = ?";
+        Long userId = null;
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -74,23 +74,14 @@ public class UserRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-
-                    Long id = resultSet.getLong("id");
-                    String name = resultSet.getString("name");
-                    int age = resultSet.getInt("age");
-                    double weight = resultSet.getDouble("weight");
-                    int height = resultSet.getInt("height");
-                    UserType userType = (UserType) resultSet.getObject("userType");
-
-                    user = new Users(id, name, age, weight, height, userType);
+                    userId = resultSet.getLong("id");
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error login ");
-
+            System.out.println("User not found");
         }
 
-        return user;
+        return userId;
     }
 
     public void updateUserWeight(Long userId, Double newWeight) {
@@ -156,7 +147,4 @@ public class UserRepository {
             System.out.println("Error deleting user: " + e.getMessage());
         }
     }
-
-
-
 }
