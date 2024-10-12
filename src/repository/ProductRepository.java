@@ -39,7 +39,7 @@ public class ProductRepository {
     }
 
     public Product getProductById(Long id) {
-        String query = "SELECT name, product_type, calories_per_100_grams, protein_per_100_grams, " +
+        String query = "SELECT id, name, product_type, calories_per_100_grams, protein_per_100_grams, " +
                 "fat_per_100_grams, carbs_per_100_grams FROM products WHERE id = ?";
         Product product = null;
 
@@ -51,6 +51,7 @@ public class ProductRepository {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     product = new Product(
+                            resultSet.getLong("id"),
                     resultSet.getString("name"),
                     ProductType.valueOf(resultSet.getString("product_type")),
                     resultSet.getDouble("calories_per_100_grams"),

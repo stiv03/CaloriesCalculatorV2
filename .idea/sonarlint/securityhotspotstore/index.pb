@@ -90,3 +90,15 @@ R
 "src/controller/MealController.java,8/6/8690059a980767dd6f7a6244e16ff53df0a9d283
 U
 %src/controller/ProductController.java,5/1/5171e9644d9d4a26548443cdd1fba0c2b86720a3
+E
+src/dto/LoginDTO.java,7/e/7e34d871ffd90a343a9317be5eef1f819682a000
+K
+src/Client/UserSession.java,1/5/15baec41ab05ef37eed2c50c35c9e12f93f17f05
+H
+src/dto/RegisterDTO.java,8/c/8c26667b4f397beaf3cd0be9eb90f1c5d2bf0878
+U
+%src/mapper/ProductResponseMapper.java,d/9/d94bcc8b8acefda3b09333770ee035cf10145782
+O
+src/dto/ProductResponseDTO.java,7/f/7f3ab96bd48de393079defc8dca4d2bee532167e
+U
+%src/config/calories_calculator_DB.sql,0/b/0be29510e300ed6ffebca4f97c4d66a7a03bc209

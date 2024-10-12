@@ -36,7 +36,7 @@ public class UserRepository {
     }
 
     public Users getUserById(Long id) {
-        String query = "SELECT name, age, weight, height, userType FROM users WHERE id = ?";
+        String query = "SELECT id, name, age, weight, height, userType FROM users WHERE id = ?";
         Users user = null;
 
         try (Connection connection = getConnection();
@@ -46,12 +46,16 @@ public class UserRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
+                    String userTypeString = resultSet.getString("userType");
+                    UserType userType = UserType.valueOf(userTypeString);
                     user = new Users(
+                            resultSet.getLong("id"),
                             resultSet.getString("name"),
                             resultSet.getInt("age"),
                             resultSet.getDouble("weight"),
                             resultSet.getInt("height"),
-                            (UserType)resultSet.getObject("userType")
+
+                            userType
                     );
                 }
             }

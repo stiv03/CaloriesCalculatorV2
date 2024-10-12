@@ -16,7 +16,7 @@ public final class DatabaseConfig {
     }
 
     static {
-        try (InputStream input = DatabaseConfig.class.getClassLoader().getResourceAsStream("application.properties")) {
+        try (InputStream input = DatabaseConfig.class.getClassLoader().getResourceAsStream("DB.properties")) {
             Properties prop = new Properties();
             if (input != null) {
                 prop.load(input);
@@ -24,7 +24,7 @@ public final class DatabaseConfig {
                 USER = prop.getProperty("db.user");
                 PASSWORD = prop.getProperty("db.password");
             } else {
-                System.out.println("Error: Configuration file 'application.properties' not found.");
+                System.out.println("Error: Configuration file 'DB.properties' not found.");
             }
         } catch (IOException e) {
             System.out.println("Error loading database configuration.");

@@ -7,10 +7,8 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
 
-public final class DatabaseInitializer {
+public class DatabaseInitializer {
 
-    private DatabaseInitializer() {
-    }
 
     private static final String FILE_PATH = "calories_calculator_DB.sql";
 
@@ -24,7 +22,7 @@ public final class DatabaseInitializer {
             for (String query : queries) {
                 if (!query.trim().isEmpty()) {
                     statement.executeUpdate(query.trim() + ";");
-                    System.out.println("Executed: " + query.trim());
+                    System.out.println("Executed");
                 }
             }
 
