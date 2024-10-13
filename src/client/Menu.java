@@ -1,4 +1,4 @@
-package Client;
+package client;
 
 import controller.MealController;
 import controller.ProductController;
@@ -7,15 +7,18 @@ import controller.UserController;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Menu {
+public final class Menu {
     private static final UserController userController = new UserController();
     private static final MealController mealController = new MealController();
     private static final ProductController productController = new ProductController();
     private static final Scanner sc = new Scanner(System.in);
 
+    private Menu() {
+    }
 
-    public static void welcomeMenu(){
+    public static void welcomeMenu() {
         boolean exit = false;
+
 
         while (!exit) {
             System.out.println("Welcome! Please select an option:");
@@ -52,6 +55,7 @@ public class Menu {
             }
         }
     }
+
     private static void mainMenu() {
         boolean backToMain = false;
 
@@ -60,7 +64,7 @@ public class Menu {
             System.out.println("1. User Profile Management");
             System.out.println("2. Meal Management");
             System.out.println("3. Product Management");
-            System.out.println("4. Logout");
+            System.out.println("4. Log out");
 
             System.out.print("Enter your choice: ");
             String choice = sc.nextLine().trim();
@@ -94,6 +98,7 @@ public class Menu {
     private static void userProfileMenu() {
         boolean backToMain = false;
 
+
         while (!backToMain) {
             System.out.println("\nUser Menu:");
             System.out.println("1. View Profile");
@@ -103,7 +108,8 @@ public class Menu {
             System.out.println("5. View Weight Records");
             System.out.println("6. Add Measurement");
             System.out.println("7. View Latest Measurements");
-            System.out.println("8. Logout");
+            System.out.println("8. View All Measurements ");
+            System.out.println("9.  Back to Main Menu");
 
             System.out.print("Enter your choice: ");
             String userChoice = sc.nextLine().trim();
@@ -138,10 +144,12 @@ public class Menu {
 
                     userController.displayLastUserMeasurements();
                     break;
-
                 case "8":
-                    UserSession.logout();
-                    System.out.println("Logged out successfully.");
+
+                    userController.displayAllUserMeasurements();
+                    break;
+
+                case "9":
                     backToMain = true;
                     break;
 
@@ -163,7 +171,7 @@ public class Menu {
             System.out.println("5. Delete Meal");
             System.out.println("6. View Today's Macros");
             System.out.println("7. View All Macros");
-            System.out.println("8. Logout");
+            System.out.println("8.  Back to Main Menu");
 
             System.out.print("Enter your choice: ");
             String mealChoice = sc.nextLine().trim();
@@ -198,8 +206,6 @@ public class Menu {
                     break;
 
                 case "8":
-                    UserSession.logout();
-                    System.out.println("Logged out successfully.");
                     backToMain = true;
                     break;
 

@@ -1,6 +1,5 @@
 package mapper;
 
-import dto.ProductDTO;
 import dto.ProductResponseDTO;
 import entity.Product;
 

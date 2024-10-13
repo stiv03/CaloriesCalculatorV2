@@ -73,8 +73,8 @@ public class MealService {
         mealsRepository.updateMealQuantity(id, newQuantity);
     }
 
-    public void deleteMeal(final long mealId){
-       mealsRepository.deleteMeal(mealId);
+    public void deleteMeal(final long mealId) {
+        mealsRepository.deleteMeal(mealId);
     }
 
     public List<DailyMacrosDTO> fetchAllMacros(Long userId) {

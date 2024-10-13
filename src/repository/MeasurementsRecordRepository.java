@@ -2,10 +2,13 @@ package repository;
 
 import config.DatabaseConfig;
 import entity.MeasurementsRecord;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MeasurementsRecordRepository {
@@ -38,33 +41,38 @@ public class MeasurementsRecordRepository {
     }
 
 
-    public MeasurementsRecord findByUserId(Long userId) {
-        String query = "SELECT shoulder, chest, biceps, waist, hips, thigh, " +
-                                         "calf, date FROM measurements_records WHERE user_id = ?";
-        MeasurementsRecord measurementsRecord = null;
+    public List<MeasurementsRecord> findAllByUserId(Long userId) {
+        String query = "SELECT shoulder, chest, biceps, waist, hips, thigh, calf, date " +
+                "FROM measurements_records WHERE user_id = ?";
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(1, userId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    measurementsRecord = new MeasurementsRecord();
-                    measurementsRecord.setShoulder(resultSet.getDouble("shoulder"));
-                    measurementsRecord.setChest(resultSet.getDouble("chest"));
-                    measurementsRecord.setBiceps(resultSet.getDouble("biceps"));
-                    measurementsRecord.setWaist(resultSet.getDouble("waist"));
-                    measurementsRecord.setHips(resultSet.getDouble("hips"));
-                    measurementsRecord.setThigh(resultSet.getDouble("thigh"));
-                    measurementsRecord.setCalf(resultSet.getDouble("calf"));
-                    measurementsRecord.setDate(resultSet.getDate("date").toLocalDate());
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("MeasurementsRecord not found");
-        }
+            ResultSet resultSet = statement.executeQuery();
 
-        return measurementsRecord;
+            List<MeasurementsRecord> measurementsRecords = new ArrayList<>();
+
+            while (resultSet.next()) {
+                MeasurementsRecord measurementRecord = new MeasurementsRecord(
+                        resultSet.getDouble("shoulder"),
+                        resultSet.getDouble("chest"),
+                        resultSet.getDouble("biceps"),
+                        resultSet.getDouble("waist"),
+                        resultSet.getDouble("hips"),
+                        resultSet.getDouble("thigh"),
+                        resultSet.getDouble("calf"),
+                        resultSet.getDate("date").toLocalDate()
+                );
+                measurementsRecords.add(measurementRecord);
+            }
+
+            return measurementsRecords;
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving measurement records: " + e.getMessage());
+            return List.of();
+        }
     }
 
     public MeasurementsRecord getLastMeasurementByUserId(Long userId) {
@@ -95,7 +103,6 @@ public class MeasurementsRecordRepository {
         }
         return measurementsRecord;
     }
-
 
 
 }

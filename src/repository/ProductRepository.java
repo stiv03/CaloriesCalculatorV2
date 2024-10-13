@@ -3,6 +3,7 @@ package repository;
 import config.DatabaseConfig;
 import entity.Product;
 import entity.enums.ProductType;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,10 +18,9 @@ public class ProductRepository {
     }
 
 
-
     public void addNewProduct(Product product) {
         String query = "INSERT INTO products (name, product_type, calories_per_100_grams, protein_per_100_grams," +
-                                             " fat_per_100_grams, carbs_per_100_grams) VALUES (?, ?, ?, ?, ?, ?)";
+                " fat_per_100_grams, carbs_per_100_grams) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -52,12 +52,12 @@ public class ProductRepository {
                 if (resultSet.next()) {
                     product = new Product(
                             resultSet.getLong("id"),
-                    resultSet.getString("name"),
-                    ProductType.valueOf(resultSet.getString("product_type")),
-                    resultSet.getDouble("calories_per_100_grams"),
-                    resultSet.getDouble("protein_per_100_grams"),
-                    resultSet.getDouble("fat_per_100_grams"),
-                    resultSet.getDouble("carbs_per_100_grams"));
+                            resultSet.getString("name"),
+                            ProductType.valueOf(resultSet.getString("product_type")),
+                            resultSet.getDouble("calories_per_100_grams"),
+                            resultSet.getDouble("protein_per_100_grams"),
+                            resultSet.getDouble("fat_per_100_grams"),
+                            resultSet.getDouble("carbs_per_100_grams"));
                 }
             }
         } catch (SQLException e) {

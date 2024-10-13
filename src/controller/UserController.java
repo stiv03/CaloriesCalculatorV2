@@ -1,6 +1,6 @@
 package controller;
 
-import Client.UserSession;
+import client.UserSession;
 import dto.*;
 import entity.enums.UserType;
 import service.UserService;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserController {
-    private final  UserService userService = new UserService();
+    private final UserService userService = new UserService();
     private final Scanner sc = new Scanner(System.in);
 
     public Long login() throws SQLException {
@@ -106,17 +106,13 @@ public class UserController {
 
         RegisterDTO registerDTO = new RegisterDTO(name, age, weight, height, username, password, UserType.USER);
 
-        try {
-            userService.register(registerDTO);
-            System.out.println("User registered successfully!");
-        } catch (SQLException e) {
-            System.err.println("An error occurred while registering the user: " + e.getMessage());
-        }
+        userService.register(registerDTO);
+        System.out.println("User registered successfully!");
+
     }
 
 
-
-    public void displayUserProfile(){
+    public void displayUserProfile() {
         Long userId = UserSession.getLoggedInUserId();
         if (userId == null) {
             System.out.println("No user is currently logged in.");
@@ -156,7 +152,7 @@ public class UserController {
         System.out.println("Height updated successfully.");
     }
 
-    public void updateAge(){
+    public void updateAge() {
         Long userId = UserSession.getLoggedInUserId();
         if (userId == null) {
             System.out.println("No user is currently logged in.");
@@ -177,7 +173,7 @@ public class UserController {
         System.out.println("Age updated successfully.");
     }
 
-    public void updateWeight(){
+    public void updateWeight() {
         Long userId = UserSession.getLoggedInUserId();
         if (userId == null) {
             System.out.println("No user is currently logged in.");
@@ -198,7 +194,7 @@ public class UserController {
         System.out.println("Weight updated successfully.");
     }
 
-    public void displayWeightRecords(){
+    public void displayWeightRecords() {
         Long userId = UserSession.getLoggedInUserId();
         if (userId == null) {
             System.out.println("No user is currently logged in.");
@@ -206,11 +202,12 @@ public class UserController {
         }
         System.out.println("Weight record:");
         List<WeightRecordDTO> weightRecords = userService.getWeightRecords(userId);
+
         if (weightRecords.isEmpty()) {
             System.out.println("No weight records found for user ID: " + userId);
         } else {
             System.out.println("Weight records for user ID: " + userId);
-            weightRecords.forEach(weightRecord-> System.out.println("Date: " + weightRecord.date() + " Weight: " + weightRecord.weight()));
+            weightRecords.forEach(weightRecord -> System.out.println("Date: " + weightRecord.date() + " Weight: " + weightRecord.weight()));
         }
     }
 
@@ -255,7 +252,8 @@ public class UserController {
         System.out.println("Measurement added successfully for user ID: " + userId);
     }
 
-    public void displayAllUserMeasurements(long userId) {
+    public void displayAllUserMeasurements() {
+        Long userId = UserSession.getLoggedInUserId();
         System.out.println("Measurements record:");
         List<MeasurementsRecordDTO> measurementsRecord = userService.getMeasurementsByUser(userId);
         if (measurementsRecord.isEmpty()) {
@@ -264,32 +262,32 @@ public class UserController {
             System.out.println("Measurements records for user ID: " + userId);
             measurementsRecord.forEach(mRecord -> {
                 System.out.println("Date: " + mRecord.date() + ", Shoulder: " + mRecord.shoulder() +
-                    ", Chest: " + mRecord.chest() + ", Biceps: " + mRecord.biceps() +
-                    ", Waist: " + mRecord.waist() + ", Hips: " + mRecord.hips() +
-                    ", Thigh: " + mRecord.thigh() + ", Calf: " + mRecord.calf());
-                 System.out.println("---");
+                        ", Chest: " + mRecord.chest() + ", Biceps: " + mRecord.biceps() +
+                        ", Waist: " + mRecord.waist() + ", Hips: " + mRecord.hips() +
+                        ", Thigh: " + mRecord.thigh() + ", Calf: " + mRecord.calf());
+                System.out.println("---");
             });
         }
     }
 
-        public void displayLastUserMeasurements(){
-            Long userId = UserSession.getLoggedInUserId();
-            if (userId == null) {
-                System.out.println("No user is currently logged in.");
-                return;
-            }
-            System.out.println("Latest Measurements:");
-           MeasurementsRecordDTO lastsMeasurements = userService.getLatestMeasurement(userId);
-            if (lastsMeasurements == null) {
-                System.out.println("No measurements records found for user ID: " + userId);
-            } else {
-                System.out.println("Measurements records for user ID: " + userId);
-                System.out.println("Date: " + lastsMeasurements.date() + ", Shoulder: " + lastsMeasurements.shoulder() +
-                        ", Chest: " + lastsMeasurements.chest() + ", Biceps: " + lastsMeasurements.biceps() +
-                        ", Waist: " + lastsMeasurements.waist() + ", Hips: " + lastsMeasurements.hips() +
-                        ", Thigh: " + lastsMeasurements.thigh() + ", Calf: " + lastsMeasurements.calf());
-            }
+    public void displayLastUserMeasurements() {
+        Long userId = UserSession.getLoggedInUserId();
+        if (userId == null) {
+            System.out.println("No user is currently logged in.");
+            return;
         }
+        System.out.println("Latest Measurements:");
+        MeasurementsRecordDTO lastsMeasurements = userService.getLatestMeasurement(userId);
+        if (lastsMeasurements == null) {
+            System.out.println("No measurements records found for user ID: " + userId);
+        } else {
+            System.out.println("Measurements records for user ID: " + userId);
+            System.out.println("Date: " + lastsMeasurements.date() + ", Shoulder: " + lastsMeasurements.shoulder() +
+                    ", Chest: " + lastsMeasurements.chest() + ", Biceps: " + lastsMeasurements.biceps() +
+                    ", Waist: " + lastsMeasurements.waist() + ", Hips: " + lastsMeasurements.hips() +
+                    ", Thigh: " + lastsMeasurements.thigh() + ", Calf: " + lastsMeasurements.calf());
+        }
+    }
 }
 
 

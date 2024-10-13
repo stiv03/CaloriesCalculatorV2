@@ -54,7 +54,6 @@ public class UserRepository {
                             resultSet.getInt("age"),
                             resultSet.getDouble("weight"),
                             resultSet.getInt("height"),
-
                             userType
                     );
                 }

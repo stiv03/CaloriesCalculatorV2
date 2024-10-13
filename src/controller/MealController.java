@@ -1,9 +1,10 @@
 package controller;
 
-import Client.UserSession;
+import client.UserSession;
 import dto.DailyMacrosDTO;
 import dto.MealResponseDTO;
 import service.MealService;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -66,25 +67,25 @@ public class MealController {
         try {
             List<MealResponseDTO> meals = mealService.findAllUserMealsRelForSpecificDay(userId, today);
 
-             if (meals.isEmpty()) {
-                 System.out.println("No meals found for the specified date: " + today);
-             } else {
-                 System.out.println("Meals for today " + today + ":");
-                 meals.forEach(meal -> {
-                     System.out.println("Product & Id: " + meal.mealId() + " " + meal.product().getName() + " ");
-                     System.out.println("Quantity (grams): " + meal.quantity());
-                     System.out.println("Calories: " + meal.product().getCaloriesPer100Grams() * meal.quantity() / 100);
-                     System.out.println("Protein: " + meal.product().getProteinPer100Grams() * meal.quantity() / 100);
-                     System.out.println("Fat: " + meal.product().getFatPer100Grams() * meal.quantity() / 100);
-                     System.out.println("Carbs: " + meal.product().getCarbsPer100Grams() * meal.quantity() / 100);
-                     System.out.println("---");
-                 });
-             }
-
-             } catch (Exception e) {
-                System.err.println("An error occurred" + e.getMessage());
+            if (meals.isEmpty()) {
+                System.out.println("No meals found for the specified date: " + today);
+            } else {
+                System.out.println("Meals for today " + today + ":");
+                meals.forEach(meal -> {
+                    System.out.println("& MealId & Product: " + meal.mealId() + " " + meal.product().getName() + " "
+                            + meal.quantity() + " g "
+                            + meal.product().getCaloriesPer100Grams() * meal.quantity() / 100 + " kcal "
+                            + meal.product().getProteinPer100Grams() * meal.quantity() / 100 + " protein "
+                            + meal.product().getFatPer100Grams() * meal.quantity() / 100 + " fat "
+                            + meal.product().getCarbsPer100Grams() * meal.quantity() / 100 + " carb");
+                    System.out.println("---");
+                });
             }
+
+        } catch (Exception e) {
+            System.err.println("An error occurred" + e.getMessage());
         }
+    }
 
     public void calculateAndDisplayDailyMacros() {
         Long userId = UserSession.getLoggedInUserId();
@@ -163,7 +164,6 @@ public class MealController {
 
         try {
             mealService.deleteMeal(mealId);
-            System.out.println("Meal with ID " + mealId + " deleted successfully.");
         } catch (Exception e) {
             System.err.println("An error occurred while deleting the meal: " + e.getMessage());
         }

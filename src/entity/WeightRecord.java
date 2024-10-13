@@ -17,6 +17,11 @@ public class WeightRecord {
     public WeightRecord() {
     }
 
+    public WeightRecord(double weight, LocalDate date) {
+        this.weight = weight;
+        this.date = date;
+    }
+
     public Users getUser() {
         return user;
     }

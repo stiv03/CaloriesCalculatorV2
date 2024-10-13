@@ -36,8 +36,6 @@ w
 G.idea/sonarlint/issuestore/e/6/e62fa88e457690a771fdc1645d2ee233732e00d2,1/5/151dc2cc5e0a094d19aee227cdf1b141543182a7
 w
 G.idea/sonarlint/issuestore/5/4/54c8584c5a58343ba5a72e2f57d5cf37f73555a6,6/1/61dcc09bf1cd87d07dbe12316af72c8bf5d67eb6
-F
-application.properties,2/f/2f692484526a88bd040e1ec9f8c211bca74f6755
 N
 src/config/DatabaseConfig.java,e/e/eeab227e56c034652602c34f6ccb0df3f99a42aa
 R
@@ -100,5 +98,9 @@ U
 %src/mapper/ProductResponseMapper.java,d/9/d94bcc8b8acefda3b09333770ee035cf10145782
 O
 src/dto/ProductResponseDTO.java,7/f/7f3ab96bd48de393079defc8dca4d2bee532167e
-U
-%src/config/calories_calculator_DB.sql,0/b/0be29510e300ed6ffebca4f97c4d66a7a03bc209
+J
+calories_calculator_DB.sql,1/1/116581277c7d66bef12db28b4dfe2dbf08ac7845
+A
+src/DB.properties,6/c/6cd30113c0e361d7311c8e5e67e15847db6c82cf
+D
+src/Client/Menu.java,3/1/3199b8f177bb3ad303981f27f1fb3393739e2ab0

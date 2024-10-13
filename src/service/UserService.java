@@ -11,8 +11,6 @@ import repository.MeasurementsRecordRepository;
 import repository.UserRepository;
 import repository.WeightRecordRepositiry;
 
-import javax.xml.stream.events.DTD;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +21,14 @@ public class UserService {
     private final WeightRecordRepositiry weightRecordRepositiry = new WeightRecordRepositiry();
     private final MeasurementsRecordRepository measurementsRecordRepository = new MeasurementsRecordRepository();
 
-    public Long login(LoginDTO loginDTO) throws SQLException {
+    public Long login(LoginDTO loginDTO) {
         String username = loginDTO.username();
         String password = loginDTO.password();
 
         return usersRepository.login(username, password);
     }
 
-    public void register(RegisterDTO registerDTO) throws SQLException {
+    public void register(RegisterDTO registerDTO) {
         Users user = new Users(
                 registerDTO.name(),
                 registerDTO.age(),
@@ -61,11 +59,11 @@ public class UserService {
         usersRepository.updateUserHeight(userId, newHeight);
     }
 
-    public void updateAge(final long userId, final int newAge){
-        usersRepository.updateUserAge(userId,newAge);
+    public void updateAge(final long userId, final int newAge) {
+        usersRepository.updateUserAge(userId, newAge);
     }
 
-    public void deleteUserById(final long userId){
+    public void deleteUserById(final long userId) {
         usersRepository.deleteByUserID(userId);
     }
 
@@ -79,39 +77,35 @@ public class UserService {
         weightRecordRepositiry.addWeightRecord(weightRecord);
         usersRepository.updateUserWeight(userId, newWeight);
 
-        user.getWeightRecords().add(weightRecord);
     }
 
     public List<WeightRecordDTO> getWeightRecords(final Long userId) {
-        final var user = usersRepository.getUserById(userId);
-        return user.getWeightRecords().stream().map(WeightRecordMapper::toDTO).toList();
+
+
+        return weightRecordRepositiry.getWeightRecords(userId).stream()
+                .map(WeightRecordMapper::toDTO).toList();
     }
 
     public void addMeasurement(final Long userId, UpdateUserMeasurementsRequestDTO requestDTO) {
-        final var user =  usersRepository.getUserById(userId);
+        final var user = usersRepository.getUserById(userId);
         var measurementsRecord = new MeasurementsRecord();
-                measurementsRecord.setUser(user);
-                measurementsRecord.setShoulder(requestDTO.shoulder());
-                measurementsRecord.setChest(requestDTO.chest());
-                measurementsRecord.setBiceps(requestDTO.biceps());
-                measurementsRecord.setWaist(requestDTO.waist());
-                measurementsRecord.setHips(requestDTO.hips());
-                measurementsRecord.setThigh(requestDTO.thigh());
-                measurementsRecord.setCalf(requestDTO.calf());
-                measurementsRecord.setDate(LocalDate.now());
+        measurementsRecord.setUser(user);
+        measurementsRecord.setShoulder(requestDTO.shoulder());
+        measurementsRecord.setChest(requestDTO.chest());
+        measurementsRecord.setBiceps(requestDTO.biceps());
+        measurementsRecord.setWaist(requestDTO.waist());
+        measurementsRecord.setHips(requestDTO.hips());
+        measurementsRecord.setThigh(requestDTO.thigh());
+        measurementsRecord.setCalf(requestDTO.calf());
+        measurementsRecord.setDate(LocalDate.now());
 
-                measurementsRecordRepository.addMeasurementsRecord(measurementsRecord);
+        measurementsRecordRepository.addMeasurementsRecord(measurementsRecord);
 
     }
 
     public List<MeasurementsRecordDTO> getMeasurementsByUser(final Long userId) {
-        List<MeasurementsRecordDTO> measurementsList = new ArrayList<>();
-        final var measurementsRecord =  measurementsRecordRepository.findByUserId(userId);
-
-        MeasurementsRecordDTO dto = MeasurementsRecordMapper.toDTO(measurementsRecord);
-        measurementsList.add(dto);
-
-        return measurementsList;
+        return measurementsRecordRepository.findAllByUserId(userId).stream()
+                .map(MeasurementsRecordMapper::toDTO).toList();
     }
 
     public MeasurementsRecordDTO getLatestMeasurement(final Long userId) {

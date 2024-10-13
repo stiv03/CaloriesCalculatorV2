@@ -36,8 +36,6 @@ G.idea/sonarlint/issuestore/5/4/54c8584c5a58343ba5a72e2f57d5cf37f73555a6,6/1/61
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 D
 src/entity/Meal.java,2/8/28b8272259b43818042091bb05edf6a4b79b62b3
-F
-application.properties,2/f/2f692484526a88bd040e1ec9f8c211bca74f6755
 N
 src/config/DatabaseConfig.java,e/e/eeab227e56c034652602c34f6ccb0df3f99a42aa
 R
@@ -90,8 +88,6 @@ R
 "src/controller/MealController.java,8/6/8690059a980767dd6f7a6244e16ff53df0a9d283
 U
 %src/controller/ProductController.java,5/1/5171e9644d9d4a26548443cdd1fba0c2b86720a3
-U
-%src/config/calories_calculator_DB.sql,0/b/0be29510e300ed6ffebca4f97c4d66a7a03bc209
 E
 src/dto/LoginDTO.java,7/e/7e34d871ffd90a343a9317be5eef1f819682a000
 U
@@ -102,3 +98,9 @@ H
 src/dto/RegisterDTO.java,8/c/8c26667b4f397beaf3cd0be9eb90f1c5d2bf0878
 K
 src/Client/UserSession.java,1/5/15baec41ab05ef37eed2c50c35c9e12f93f17f05
+J
+calories_calculator_DB.sql,1/1/116581277c7d66bef12db28b4dfe2dbf08ac7845
+A
+src/DB.properties,6/c/6cd30113c0e361d7311c8e5e67e15847db6c82cf
+D
+src/Client/Menu.java,3/1/3199b8f177bb3ad303981f27f1fb3393739e2ab0

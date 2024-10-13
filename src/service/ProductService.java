@@ -3,7 +3,6 @@ package service;
 import dto.ProductDTO;
 import dto.ProductResponseDTO;
 import entity.Product;
-import mapper.ProductMapper;
 import mapper.ProductResponseMapper;
 import repository.ProductRepository;
 
@@ -13,7 +12,7 @@ public class ProductService {
 
     private final ProductRepository productRepository = new ProductRepository();
 
-    public void addNewProduct(ProductDTO productDTO){
+    public void addNewProduct(ProductDTO productDTO) {
         var newProduct = new Product();
 
         newProduct.setName(productDTO.name());

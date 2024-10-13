@@ -1,10 +1,16 @@
-package Client;
+package client;
 
-public class UserSession {
+public final class UserSession {
+
+    private UserSession() {
+    }
+
     private static Long loggedInUserId;
+
     public static void setLoggedInUserId(Long userId) {
         loggedInUserId = userId;
     }
+
     public static Long getLoggedInUserId() {
         return loggedInUserId;
     }

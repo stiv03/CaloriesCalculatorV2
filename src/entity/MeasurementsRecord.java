@@ -15,11 +15,10 @@ public class MeasurementsRecord {
     private LocalDate date;
 
 
-
     public MeasurementsRecord() {
     }
 
-    public MeasurementsRecord( double shoulder, double chest, double biceps,
+    public MeasurementsRecord(double shoulder, double chest, double biceps,
                               double waist, double hips, double thigh, double calf, LocalDate date) {
 
         this.shoulder = shoulder;

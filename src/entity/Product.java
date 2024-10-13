@@ -11,7 +11,7 @@ public class Product {
     private double fatPer100Grams;
     private double carbsPer100Grams;
 
-    public Product( String name, ProductType productType, double caloriesPer100Grams,
+    public Product(String name, ProductType productType, double caloriesPer100Grams,
                    double proteinPer100Grams, double fatPer100Grams, double carbsPer100Grams) {
         this.name = name;
         this.productType = productType;
