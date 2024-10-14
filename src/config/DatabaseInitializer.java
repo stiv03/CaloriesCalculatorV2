@@ -9,7 +9,6 @@ import java.sql.Statement;
 
 public class DatabaseInitializer {
 
-
     private static final String FILE_PATH = "calories_calculator_DB.sql";
 
     private void executeSQLFromFile() {

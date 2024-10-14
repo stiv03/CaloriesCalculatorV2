@@ -3,7 +3,6 @@ package repository;
 import config.DatabaseConfig;
 import entity.Meal;
 import entity.Product;
-import entity.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +14,6 @@ import java.util.List;
 public class MealsRepository {
 
     private final ProductRepository productRepository = new ProductRepository();
-    private final UserRepository userRepository = new UserRepository();
 
     private Connection getConnection() throws SQLException {
         return DatabaseConfig.getConnection();
@@ -66,39 +64,6 @@ public class MealsRepository {
         }
 
         return meals;
-    }
-
-    public Meal getMealById(Long id) {
-        String query = "SELECT user_id, product_id, quantity, consumed_at FROM meals WHERE id = ?";
-        Meal meal = null;
-
-        try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setLong(1, id);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    meal = new Meal();
-
-
-                    Long userId = resultSet.getLong("user_id");
-                    Users user = userRepository.getUserById(userId);
-                    meal.setUser(user);
-
-                    Long productId = resultSet.getLong("product_id");
-                    Product product = productRepository.getProductById(productId);
-                    meal.setProduct(product);
-
-                    meal.setQuantity(resultSet.getDouble("quantity"));
-                    meal.setConsumedAt(resultSet.getDate("consumed_at").toLocalDate());
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error retrieving meal: " + e.getMessage());
-        }
-
-        return meal;
     }
 
     public void updateMealQuantity(Long mealId, Double newQuantity) {

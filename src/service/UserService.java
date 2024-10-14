@@ -12,7 +12,6 @@ import repository.UserRepository;
 import repository.WeightRecordRepositiry;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {

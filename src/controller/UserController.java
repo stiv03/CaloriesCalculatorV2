@@ -1,5 +1,6 @@
 package controller;
 
+import client.PasswordUtils;
 import client.UserSession;
 import dto.*;
 import entity.enums.UserType;
@@ -25,7 +26,10 @@ public class UserController {
             System.out.print("Password: ");
             String password = sc.nextLine().trim();
 
-            loggedUserId = userService.login(new LoginDTO(username, password));
+            String hashedPassword = PasswordUtils.hashPassword(password);
+
+            loggedUserId = userService.login(new LoginDTO(username, hashedPassword));
+
 
             if (loggedUserId == null) {
                 System.out.println("Invalid username or password.");
@@ -103,8 +107,9 @@ public class UserController {
 
             System.out.println("Password cannot be empty. Please try again.");
         }
+        String hashedPassword = PasswordUtils.hashPassword(password);
 
-        RegisterDTO registerDTO = new RegisterDTO(name, age, weight, height, username, password, UserType.USER);
+        RegisterDTO registerDTO = new RegisterDTO(name, age, weight, height, username, hashedPassword, UserType.USER);
 
         userService.register(registerDTO);
         System.out.println("User registered successfully!");

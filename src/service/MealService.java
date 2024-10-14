@@ -39,7 +39,7 @@ public class MealService {
 
     public List<MealResponseDTO> findAllUserMealsRelForSpecificDay(final Long userId, LocalDate date) {
 
-        var allMealsEaten = mealsRepository.findAllMealsByUserId(userId);
+        final var allMealsEaten = mealsRepository.findAllMealsByUserId(userId);
 
         List<MealResponseDTO> mealsEatenForGivenDay = new ArrayList<>();
 

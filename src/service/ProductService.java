@@ -25,7 +25,6 @@ public class ProductService {
         productRepository.addNewProduct(newProduct);
     }
 
-
     public List<ProductResponseDTO> searchProducts(String query) {
         return productRepository.findByNameContainingIgnoreCase(query).stream().map(ProductResponseMapper::mapToProductResponseDTO).toList();
     }

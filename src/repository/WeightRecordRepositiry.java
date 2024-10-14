@@ -1,8 +1,6 @@
 package repository;
 
 import config.DatabaseConfig;
-
-import dto.WeightRecordDTO;
 import entity.WeightRecord;
 
 import java.sql.Connection;
