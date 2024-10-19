@@ -108,3 +108,13 @@ K
 src/client/UserSession.java,3/2/32839d279a8c3323586ca91e50b9e39f012dca7f
 D
 src/client/Menu.java,f/5/f5e134e391fd8a170937f7e52837d4001bfd2eb7
+M
+src/client/PasswordUtils.java,d/0/d03c2542c025c3b0c815d8726b5fb46d1ebfe6c0
+D
+src/dto/MealDTO.java,2/6/26097bba7089950246bead10551bac91c7cb9d38
+F
+src/view/UserView.java,4/9/499b6b6af7f275a9e16b7d879d83fd6df31a4094
+F
+src/view/MealView.java,e/b/ebe5df377e4e80994a87b70f6e1edace964124ad
+I
+src/view/ProductView.java,6/5/65df34864e66cdb6672052da334cd93680c14470
