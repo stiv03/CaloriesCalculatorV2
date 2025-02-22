@@ -69,7 +69,7 @@ public class MealView {
     public void displayMeals(List<MealResponseDTO> meals) {
         System.out.println("Meals for today " + ":");
         meals.forEach(meal -> {
-            System.out.println("& MealId & Product: " + meal.mealId() + " " + meal.product().getName() + " "
+            System.out.println("MealId & Product: " + meal.mealId() + " " + meal.product().getName() + " "
                     + meal.quantity() + " g "
                     + meal.product().getCaloriesPer100Grams() * meal.quantity() / 100 + " kcal "
                     + meal.product().getProteinPer100Grams() * meal.quantity() / 100 + " protein "

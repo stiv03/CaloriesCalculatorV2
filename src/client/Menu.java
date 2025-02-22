@@ -9,7 +9,6 @@ import controller.UserController;
 import dto.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 public final class Menu {
     private static final UserController userController = new UserController();
@@ -18,7 +17,6 @@ public final class Menu {
     private static final UserView userView = new UserView();
     private static final MealView mealView = new MealView();
     private static final ProductView productView = new ProductView();
-    private static final Scanner sc = new Scanner(System.in);
 
     private Menu() {}
 
@@ -76,7 +74,7 @@ public final class Menu {
 
         while (!backToMain) {
             displayMainMenu();
-            String choice = sc.nextLine().trim();
+            String choice = userView.getUserInput("Enter your choice");
 
             switch (choice) {
                 case "1":

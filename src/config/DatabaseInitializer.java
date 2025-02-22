@@ -11,7 +11,7 @@ public class DatabaseInitializer {
 
     private static final String FILE_PATH = "calories_calculator_DB.sql";
 
-    private void executeSQLFromFile() {
+    private void executeSQLFromFile() throws SQLException, IOException {
         try (Connection connection = DatabaseConfig.getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -21,18 +21,21 @@ public class DatabaseInitializer {
             for (String query : queries) {
                 if (!query.trim().isEmpty()) {
                     statement.executeUpdate(query.trim() + ";");
-                    System.out.println("Executed");
                 }
             }
+            System.out.println("Executed");
 
         } catch (SQLException e) {
             System.err.println("Error executing SQL from file: " + e.getMessage());
+            throw e;
+
         } catch (IOException e) {
             System.err.println("Error reading SQL file: " + e.getMessage());
+            throw e;
         }
     }
 
-    public void initializeDatabaseFromFile() {
+    public void initializeDatabaseFromFile()throws SQLException, IOException {
         executeSQLFromFile();
     }
 }
